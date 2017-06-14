@@ -65,12 +65,15 @@ i.fa-trash-o {
   margin-top: 2rem;
   position: relative;
   width: 60%; }
-  .Nav button img {
+
+.Nav button img {
     position: absolute;
     left: 0;
     width: 100%;
-    transition: opacity 0.25s ease-in-out; }
-    .Nav button:hover img.outline {
+    transition: opacity 0.25s ease-in-out; 
+}
+
+.Nav button:hover img.outline {
       opacity: 0; }
 
 .NoteList {
