@@ -77,9 +77,9 @@ class Main extends Component {
    render() {
     return (
         <div className="Main">
-            <Sidebar callback={this.newNote.bind(this)}/>
-            <NoteList callback={this.selectNote.bind(this)} notes={this.state.notes}/>
-            <NoteForm callback={this.updateNote.bind(this)} delete={this.delete.bind(this)} currNote={this.state.selected} key={this.state.selected.id}/>
+            <Sidebar newNote={this.newNote.bind(this)}/>
+            <NoteList selectNote={this.selectNote.bind(this)} notes={this.state.notes}/>
+            <NoteForm updateNote={this.updateNote.bind(this)} delete={this.delete.bind(this)} currNote={this.state.selected} key={this.state.selected.id}/>
         </div>
     )
    } 

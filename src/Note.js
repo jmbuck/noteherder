@@ -1,30 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Note.css'
 
-class Note extends Component {
-    handleClick() {
-        this.props.callback({title: this.props.title, body: this.props.body, id: this.props.id})
-    }
-
-    render() {
-        return (
-        <li onClick={this.handleClick.bind(this)}>
+const Note = (props) => {
+    return (
+        <li onClick={() => props.selectNote({title: props.title, body: props.body, id: props.id})}>
             <div className="note">
               <div className="note-title">
-                {this.props.title}
+                {props.title}
               </div>
               <div className="note-body">
                 <p>
-                 {this.props.body}
+                 {props.body}
                 </p>
               </div>
             </div>
-          </li>
-        )
-    }
-
-
-
+        </li>
+    )
 }
 
 export default Note

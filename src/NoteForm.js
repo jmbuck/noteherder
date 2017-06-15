@@ -11,6 +11,7 @@ class NoteForm extends Component {
     }
 
     componentDidMount() {
+        //populates form with note data
         this.setState({title: this.props.currNote.title, body: this.props.currNote.body})
         document.querySelector('.NoteForm .title').value = this.props.currNote.title;
         document.querySelector('.NoteForm .body').value = this.props.currNote.body;
@@ -18,18 +19,14 @@ class NoteForm extends Component {
 
     updateNote(ev) {
         this.setState({title: this.titleInput.value, body: this.bodyInput.value})
-        this.props.callback({title: this.titleInput.value, body: this.bodyInput.value, id: this.props.currNote.id})
-    }
-
-    delete() {
-        this.props.delete()
+        this.props.updateNote({title: this.titleInput.value, body: this.bodyInput.value, id: this.props.currNote.id})
     }
 
     render() {
         return (
             <div className="NoteForm">
                 <form onKeyUp={this.updateNote.bind(this)}>
-                    <div onClick={this.delete.bind(this)} className="delete">
+                    <div onClick={() => this.props.delete()} className="delete">
                         <i className="fa fa-trash-o"></i>
                     </div>
                     <p>
