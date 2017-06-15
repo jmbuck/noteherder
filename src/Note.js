@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './Note.css'
 
 class Note extends Component {
-
     handleClick() {
         this.props.callback({title: this.props.title, body: this.props.body, id: this.props.id})
     }

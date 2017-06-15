@@ -15,11 +15,27 @@ class Main extends Component {
        }
    }
 
+   componentDidMount() {
+        //load
+        let maxID = 0;
+        const notes = JSON.parse(localStorage.getItem('notes'));
+        if(notes !== null) {
+            notes.map(note => {
+                if(note.id > maxID) maxID = note.id;
+            })
+            this.setState({notes, selected: notes[0], maxID: maxID+1})
+        }
+   }
+
+   save() {
+        localStorage.setItem('notes', JSON.stringify(this.state.notes));
+   }
+
    newNote() {
        const notes = [...this.state.notes]
        const note = {title: '', body: '', id: this.state.maxID};
        notes.unshift(note)
-       this.setState({ notes, selected: note, maxID: this.state.maxID + 1 })
+       this.setState({ notes, selected: note, maxID: this.state.maxID + 1 }, this.save.bind(this))
        return note;
    }
 
@@ -35,7 +51,7 @@ class Main extends Component {
                 currNote.body = note.body
             }
         })
-        this.setState({ notes })
+        this.setState({ notes }, this.save.bind(this))
    }
 
    delete() {
@@ -44,7 +60,9 @@ class Main extends Component {
         notes.map((note, i) =>{
             if(note.id === this.state.selected.id) {
                 if(notes.length > 1) {
-                    selected = (i === notes.length-1) ? notes[notes.length-2] : notes[i];
+                  
+                    selected = (i === notes.length-1) ? notes[notes.length-2] : notes[i+1];
+                    console.log('made it here');
                 } else {
                     const newNote = this.newNote();
                     notes.push(newNote);
@@ -53,7 +71,7 @@ class Main extends Component {
                 notes.splice(i, 1);   
             }
         })
-        this.setState({ notes, selected })
+        this.setState({ notes, selected }, this.save.bind(this))
    }
 
    render() {
