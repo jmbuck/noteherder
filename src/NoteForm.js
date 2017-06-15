@@ -8,7 +8,6 @@ class NoteForm extends Component {
             title: '',
             body: '',
         }
-        console.log('new!');
     }
 
     componentDidMount() {
@@ -22,18 +21,26 @@ class NoteForm extends Component {
         this.props.callback({title: this.titleInput.value, body: this.bodyInput.value, id: this.props.currNote.id})
     }
 
+    delete() {
+        this.props.delete()
+    }
+
     render() {
         return (
             <div className="NoteForm">
                 <form onKeyUp={this.updateNote.bind(this)}>
+                    <div onClick={this.delete.bind(this)} className="delete">
+                        <i className="fa fa-trash-o"></i>
+                    </div>
                     <p>
-                        <input 
-                            type="text" 
-                            className="title"
-                            name="title" 
-                            placeholder="Title your note" 
-                            ref={input => this.titleInput = input} 
-                        />
+                            <input 
+                                type="text" 
+                                className="title"
+                                name="title" 
+                                placeholder="Title your note" 
+                                ref={input => this.titleInput = input} 
+                                autoFocus
+                            />
                     </p>
                     <p>
                         <textarea 

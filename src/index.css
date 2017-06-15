@@ -25,13 +25,3 @@ h1, h2, h3, h4, h5 {
 font-family: "Fauna One";
 font-weight: 400;
 color: #008BF8; }
-
-i.fa-trash-o {
-  cursor: pointer;
-  color: #ccc;
-  vertical-align: middle;
-  margin-left: 1em; }
-
-i.fa-trash-o:hover {
-    color: #999; }
-

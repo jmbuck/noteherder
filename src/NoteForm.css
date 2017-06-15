@@ -22,6 +22,21 @@
   margin: 0 auto;
   max-width: 80rem;
 }
+
+i.fa-trash-o {
+  cursor: pointer;
+  color: #ccc;
+  vertical-align: middle;
+  height: 50px;
+  width: 50px;
+  font-size: 36px;
+  margin-top: 1rem;
+}
+
+i.fa-trash-o:hover {
+    color: #999; }
+
+
 input[name="title"] {
   border: none;
   font-size: 200%;
