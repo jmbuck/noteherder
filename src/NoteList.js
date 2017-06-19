@@ -3,6 +3,7 @@ import './NoteList.css'
 import Note from './Note'
 
 const NoteList = (props) => {
+      console.log(props.notes);
       return (
         <div className="NoteList">
             <h3>Notes</h3>
