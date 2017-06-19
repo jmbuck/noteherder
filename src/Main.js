@@ -3,6 +3,7 @@ import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 import './Main.css'
+import base from './base.js'
 
 class Main extends Component {
    constructor() {
@@ -15,16 +16,22 @@ class Main extends Component {
        }
    }
 
-   componentDidMount() {
+   componentWillMount() {
         //load
-        let maxID = 0;
+       base.syncState('notes', {
+           context: this,
+           state: 'notes',
+       }
+       )
+       
+        /*let maxID = 0;
         const notes = JSON.parse(localStorage.getItem('notes'));
         if(notes !== null) {
             notes.map(note => {
                 if(note.id > maxID) maxID = note.id;
             })
             this.setState({notes, selected: notes[0], maxID: maxID+1})
-        }
+        }*/
    }
 
    save() {
