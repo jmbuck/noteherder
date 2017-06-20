@@ -3,7 +3,8 @@ import './Note.css'
 
 const Note = (props) => {
     return (
-        <li onClick={() => props.selectNote({title: props.title, body: props.body, id: props.id})}>
+      <a onClick={() => props.selectNote({title: props.title, body: props.body, id: props.id})}>
+        <li>
             <div className="note">
               <div className="note-title">
                 {props.title}
@@ -15,6 +16,7 @@ const Note = (props) => {
               </div>
             </div>
         </li>
+      </a>
     )
 }
 

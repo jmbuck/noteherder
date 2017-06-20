@@ -6,14 +6,10 @@ import './Main.css'
 import base from './base.js'
 
 class Main extends Component {
-    componentWillMount() {
-        console.log(this.props.notes);
-    }
-
    render() {
     return (
         <div className="Main">
-            <Sidebar newNote={this.props.newNote}/>
+            <Sidebar newNote={this.props.newNote} signOut={this.props.signOut}/>
             <NoteList selectNote={this.props.selectNote} notes={this.props.notes}/>
             <NoteForm updateNote={this.props.updateNote} delete={this.props.delete} currNote={this.props.selected} key={this.props.selected.id}/>
         </div>

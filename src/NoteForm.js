@@ -26,9 +26,6 @@ class NoteForm extends Component {
         return (
             <div className="NoteForm">
                 <form onKeyUp={this.updateNote.bind(this)}>
-                    <div onClick={() => this.props.delete()} className="delete">
-                        <i className="fa fa-trash-o"></i>
-                    </div>
                     <p>
                             <input 
                                 type="text" 
@@ -49,6 +46,9 @@ class NoteForm extends Component {
                             ref={input => this.bodyInput = input}
                         ></textarea>
                  </p>
+                <div onClick={() => this.props.delete()} className="delete">
+                    <i className="fa fa-trash-o"></i>
+                </div>
                 </form>
           </div>
         )

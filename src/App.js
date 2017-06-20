@@ -3,7 +3,6 @@ import './App.css';
 import Main from './Main'
 import base, { auth } from './base'
 import SignIn from './SignIn'
-import SignOut from './SignOut'
 
 class App extends Component {
   constructor() {
@@ -12,7 +11,6 @@ class App extends Component {
     this.state = {
       notes: [initialNote],
       selected: initialNote,
-      maxID: 1,
       uid: null,
     }
   }
@@ -31,11 +29,19 @@ class App extends Component {
     )
   }
 
+  blankNote = () => {
+      return {
+        title: '',
+        body: '',
+        id: Date.now()
+      }
+  }
+
    newNote() {
        const notes = [...this.state.notes]
-       const note = {title: '', body: '', id: this.state.maxID};
+       const note = {title: '', body: '', id: Date.now()};
        notes.unshift(note)
-       this.setState({ notes, selected: note, maxID: this.state.maxID + 1 })
+       this.setState({ notes, selected: note})
        return note;
    }
 
@@ -83,7 +89,7 @@ class App extends Component {
       .signOut()
       .then(() => {
         base.removeBinding(this.ref)
-        this.setState({notes: []})
+        this.setState({notes: [], selected: this.blankNote() })
       })
    }
 
@@ -104,8 +110,7 @@ class App extends Component {
   renderMain = () => {
     return (
     <div>
-      <SignOut signOut={this.signOut} />
-      <Main notes={this.state.notes} newNote={this.newNote.bind(this)} selectNote={this.selectNote.bind(this)} updateNote={this.updateNote.bind(this)} delete={this.delete.bind(this)} selected={this.state.selected} />
+      <Main notes={this.state.notes} newNote={this.newNote.bind(this)} selectNote={this.selectNote.bind(this)} updateNote={this.updateNote.bind(this)} delete={this.delete.bind(this)} selected={this.state.selected} signOut={this.signOut.bind(this)} />
      </div>
     )
   }
