@@ -9,6 +9,7 @@ class NoteForm extends Component {
     }
 
     handleRemove = (ev) => {
+        console.log(this.props.selected)
         this.props.delete(this.props.selected)
     }
 

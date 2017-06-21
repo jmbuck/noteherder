@@ -4,7 +4,6 @@ import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 import './Main.css'
-import base from './base.js'
 
 class Main extends Component {
    render() {
