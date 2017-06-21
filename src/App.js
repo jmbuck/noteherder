@@ -46,12 +46,18 @@ class App extends Component {
   }
 
    saveNote = (note) => { 
-        if (!note.id) {
+       let redirect = false;
+       if (!note.id) {
           note.id = `note-${Date.now()}`
+          redirect = true;
        }
        const notes = {...this.state.notes}
        notes[note.id] = note
        this.setState({ notes, selected: note})
+
+       if(redirect) {
+         this.props.history.push(`/notes/${note.id}`)
+       }
    }
 
    selectNote = (note) => {
@@ -63,6 +69,7 @@ class App extends Component {
         notes[note.id] = null;
         this.resetCurrentNote()
         this.setState({ notes })
+        this.props.history.push('/notes')    
    }
 
   resetCurrentNote = () => {
