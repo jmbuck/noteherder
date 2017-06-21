@@ -10,7 +10,7 @@ class Main extends Component {
     return (
         <div className="Main">
             <Sidebar signOut={this.props.signOut}/>
-            <NoteList selectNote={this.props.selectNote} notes={this.props.notes}/>
+            <NoteList notes={this.props.notes}/>
 
             <Switch>
                 <Route path="/notes/:id" render={(navProps) => (

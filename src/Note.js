@@ -1,9 +1,11 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
 import './Note.css'
 
-const Note = ({ note, selectNote }) => {
+const Note = ({ note }) => {
     return (
-      <a onClick={() => selectNote(note)}>
+      <NavLink to={`/notes/${note.id}`}>
         <li>
             <div className="note">
               <div className="note-title">
@@ -16,7 +18,7 @@ const Note = ({ note, selectNote }) => {
               </div>
             </div>
         </li>
-      </a>
+      </NavLink>
     )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import './NoteList.css'
 import Note from './Note'
 
-const NoteList = ({ notes, selectNote }) => {
+const NoteList = ({ notes }) => {
       return (
         <div className="NoteList">
             <h3>Notes</h3>
@@ -11,7 +11,6 @@ const NoteList = ({ notes, selectNote }) => {
                  return <Note
                    note={notes[noteId]}
                    key={noteId}
-                   selectNote={selectNote}
                  />
                 })}
             </ul>
