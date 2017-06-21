@@ -3,13 +3,13 @@ import './NoteForm.css'
 
 class NoteForm extends Component {
     handleChanges = (ev) => {
-        const note = {...this.props.currentNote}
+        const note = {...this.props.selected}
         note[ev.target.name] = ev.target.value
         this.props.saveNote(note)
     }
 
     handleRemove = (ev) => {
-        this.props.delete(this.props.currentNote)
+        this.props.delete(this.props.selected)
     }
 
     render() {
@@ -23,7 +23,7 @@ class NoteForm extends Component {
                                 name="title" 
                                 placeholder="Title your note" 
                                 onChange={this.handleChanges}
-                                value={this.props.currentNote.title}
+                                value={this.props.selected.title}
                                 autoFocus
                             />
                     </p>
@@ -35,7 +35,7 @@ class NoteForm extends Component {
                             rows="10" 
                             placeholder="Just start typing..." 
                             onChange={this.handleChanges}
-                            value={this.props.currentNote.body}
+                            value={this.props.selected.body}
                         ></textarea>
                  </p>
                 <div onClick={this.handleRemove} className="delete">

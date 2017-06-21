@@ -7,7 +7,7 @@ const NoteList = ({ notes, selectNote }) => {
         <div className="NoteList">
             <h3>Notes</h3>
             <ul id="notes">
-               {Object.keys(notes).map((noteId) => {
+               {Object.keys(notes).reverse().map((noteId) => {
                  return <Note
                    note={notes[noteId]}
                    key={noteId}

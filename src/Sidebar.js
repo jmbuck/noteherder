@@ -5,17 +5,17 @@ import newIcon from './new.png'
 import './Sidebar.css'
 import SignOut from './SignOut'
 
-const Sidebar = (props) => {
+const Sidebar = ({ resetCurrentNote, signOut }) => {
     return (
       <nav className="Sidebar">
         <div className="logo">
           <img src={quill} alt="Noteherder" />
         </div>
-        <button onClick={() => props.newNote()} className="new-note">
+        <button onClick={resetCurrentNote} className="new-note">
           <img src={newHover} alt="New note" />
           <img className="outline" src={newIcon} alt="New note" />
         </button>
-        <SignOut signOut={props.signOut} />
+        <SignOut signOut={signOut} />
       </nav>
     )
 }

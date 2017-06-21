@@ -38,7 +38,7 @@ class App extends Component {
       }
   }
 
-   newNote = (note) => { 
+   saveNote = (note) => { 
         if (!note.id) {
           note.id = `note-${Date.now()}`
        }
@@ -47,8 +47,8 @@ class App extends Component {
        this.setState({ notes, selected: note})
    }
 
-   selectNote(note) {
-        this.setState({ selected: note});
+   selectNote = (note) => {
+        this.setState({ selected: note });
    }
    
    delete(note) {
@@ -58,12 +58,8 @@ class App extends Component {
         this.setState({ notes })
    }
 
-  setCurrentNote = (note) => {
-    this.setState({ selected: note })
-  }
-
   resetCurrentNote = () => {
-    this.setCurrentNote(this.blankNote())
+    this.selectNote(this.blankNote())
   }
 
    signedIn = () => {
@@ -97,7 +93,7 @@ class App extends Component {
     const actions = {
       saveNote: this.saveNote,
       delete: this.delete,
-      setCurrentNote: this.setCurrentNote,
+      selectNote: this.selectNote,
       resetCurrentNote: this.resetCurrentNote,
       signOut: this.signOut,
     }
