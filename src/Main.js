@@ -9,7 +9,7 @@ class Main extends Component {
    render() {
     return (
         <div className="Main">
-            <Sidebar resetCurrentNote={this.props.resetCurrentNote} signOut={this.props.signOut}/>
+            <Sidebar signOut={this.props.signOut}/>
             <NoteList selectNote={this.props.selectNote} notes={this.props.notes}/>
 
             <Switch>
