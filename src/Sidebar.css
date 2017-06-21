@@ -17,14 +17,19 @@
   padding-left: 4px;
 }
 
+.Sidebar a.new-note {
+  width: 60%;
+  position: relative;
+  margin-top: 2rem;
+}
+
 .Sidebar button {
   background-color: transparent;
   border: 0;
   color: #008BF8;
+  width: 100%;
   cursor: pointer;
-  margin-top: 2rem;
-  position: relative;
-  width: 60%; }
+}
 
 .Sidebar button img {
     position: absolute;

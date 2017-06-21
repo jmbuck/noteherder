@@ -1,8 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import './Note.css'
-
 const Note = ({ note }) => {
     return (
       <NavLink to={`/notes/${note.id}`}>
