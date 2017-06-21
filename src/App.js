@@ -6,6 +6,10 @@ import Main from './Main'
 import base, { auth } from './base'
 import SignIn from './SignIn'
 
+//Make the sign in form prettier
+//Add rich text editor to the form
+
+
 class App extends Component {
   constructor() {
     super()

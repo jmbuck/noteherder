@@ -20,6 +20,7 @@
 }
 .NoteForm form {
   margin: 0 auto;
+  height: 100%;
   max-width: 80rem;
 }
 
@@ -48,9 +49,13 @@ input[name="title"] {
 input[name="title"] {
   outline: none;
 }
-textarea {
+.NoteForm .body {
   border-color: #eee;
   width: 100%;
   height: calc(100vh - 140px);
   font-size: 1.3em;
+}
+
+.NoteForm .editor {
+  height: 100%;
 }
