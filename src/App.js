@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom'
+
 import './App.css';
 import Main from './Main'
 import base, { auth } from './base'
@@ -7,10 +9,9 @@ import SignIn from './SignIn'
 class App extends Component {
   constructor() {
     super()
-    const initialNote = {title: '', body: '', id: 0};
     this.state = {
-      notes: [initialNote],
-      selected: initialNote,
+      notes: {},
+      selected: this.blankNote(),
       uid: null,
     }
   }
@@ -33,53 +34,38 @@ class App extends Component {
       return {
         title: '',
         body: '',
-        id: Date.now()
+        id: null,
       }
   }
 
-   newNote() {
-       const notes = [...this.state.notes]
-       const note = {title: '', body: '', id: Date.now()};
-       notes.unshift(note)
+   newNote = (note) => { 
+        if (!note.id) {
+          note.id = `note-${Date.now()}`
+       }
+       const notes = {...this.state.notes}
+       notes[note.id] = note
        this.setState({ notes, selected: note})
-       return note;
    }
 
    selectNote(note) {
         this.setState({ selected: note});
    }
    
-   updateNote(note) {
-        const notes = [...this.state.notes]
-        notes.map((currNote, i) =>{
-            if(currNote.id === note.id) {
-                currNote.title = note.title
-                currNote.body = note.body
-            }
-        })
+   delete(note) {
+        const notes = {...this.state.notes}
+        notes[note.id] = null;
+        this.resetCurrentNote()
         this.setState({ notes })
    }
 
-   delete() {
-        const notes = [...this.state.notes]
-        let selected
-        notes.map((note, i) =>{
-            if(note.id === this.state.selected.id) {
-                if(notes.length > 1) {   
-                    selected = (i === notes.length-1) ? notes[notes.length-2] : notes[i+1];
-                } else {
-                    const newNote = this.newNote();
-                    notes.push(newNote);
-                    selected = newNote;
-                }
-                notes.splice(i, 1);   
-            }
-        })
-        this.setState({ notes, selected })
-   }
+  setCurrentNote = (note) => {
+    this.setState({ selected: note })
+  }
 
-  
-  
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
    signedIn = () => {
        return this.state.uid
    }
@@ -89,7 +75,7 @@ class App extends Component {
       .signOut()
       .then(() => {
         base.removeBinding(this.ref)
-        this.setState({notes: [], selected: this.blankNote() })
+        this.setState({notes: {}, selected: this.blankNote() })
       })
    }
 
@@ -99,7 +85,7 @@ class App extends Component {
 
   syncNotes = () => {
         this.ref = base.syncState(
-           `${this.state.uid}/notes`, 
+           `notes/${this.state.uid}`, 
         {
            context: this,
            state: 'notes',
@@ -107,18 +93,30 @@ class App extends Component {
        )
    }
 
-  renderMain = () => {
-    return (
-    <div>
-      <Main notes={this.state.notes} newNote={this.newNote.bind(this)} selectNote={this.selectNote.bind(this)} updateNote={this.updateNote.bind(this)} delete={this.delete.bind(this)} selected={this.state.selected} signOut={this.signOut.bind(this)} />
-     </div>
-    )
-  }
-
   render() {
+    const actions = {
+      saveNote: this.saveNote,
+      delete: this.delete,
+      setCurrentNote: this.setCurrentNote,
+      resetCurrentNote: this.resetCurrentNote,
+      signOut: this.signOut,
+    }
+    const noteData = {
+      notes: this.state.notes,
+      selected: this.state.selected,
+    }
     return (
       <div className="App">
-       {this.signedIn() ? this.renderMain() : <SignIn />}
+       <Switch>
+          <Route path="/notes" render={() => (
+            <Main
+              {...noteData}
+              {...actions} 
+            />)}/>
+          <Route path="/sign-in" component={SignIn} />
+          <Route  render={() => <Redirect to="/notes" />}/>
+        </Switch>
+       {/*{this.signedIn() ? this.renderMain() : <SignIn />}*/}
       </div>
     );
   }

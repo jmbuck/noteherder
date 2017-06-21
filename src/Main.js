@@ -11,7 +11,7 @@ class Main extends Component {
         <div className="Main">
             <Sidebar newNote={this.props.newNote} signOut={this.props.signOut}/>
             <NoteList selectNote={this.props.selectNote} notes={this.props.notes}/>
-            <NoteForm updateNote={this.props.updateNote} delete={this.props.delete} currNote={this.props.selected} key={this.props.selected.id}/>
+            <NoteForm {...this.props} />
         </div>
     )
    } 

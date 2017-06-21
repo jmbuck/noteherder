@@ -1,17 +1,17 @@
 import React from 'react'
 import './Note.css'
 
-const Note = (props) => {
+const Note = ({ note, selectNote }) => {
     return (
-      <a onClick={() => props.selectNote({title: props.title, body: props.body, id: props.id})}>
+      <a onClick={() => selectNote(note)}>
         <li>
             <div className="note">
               <div className="note-title">
-                {props.title}
+                {note.title}
               </div>
               <div className="note-body">
                 <p>
-                 {props.body}
+                 {note.body}
                 </p>
               </div>
             </div>
