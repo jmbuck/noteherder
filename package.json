@@ -1,6 +1,6 @@
 {
   "name": "noteherder",
-  "homepage": "http://jmbuck.github.io/noteherder",
+  "homepage": "https://noteherder-fed46.firebaseapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "firebase deploy"
   }
 }
