@@ -29,6 +29,7 @@
   color: #008BF8;
   width: 100%;
   cursor: pointer;
+  outline: none;
 }
 
 .Sidebar button img {

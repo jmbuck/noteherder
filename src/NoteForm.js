@@ -10,7 +10,7 @@ class NoteForm extends Component {
 
     componentWillReceiveProps(nextProps) {
         const newId = nextProps.match.params.id
-
+        
         if(newId) {        
             if(newId !== this.props.selected.id) {
                 const note = nextProps.notes[newId]
@@ -22,18 +22,18 @@ class NoteForm extends Component {
                 }
             }
         } else if(this.props.selected.id) {
+            this.setState({ value: RichTextEditor.createEmptyValue() })
             this.props.resetCurrentNote()
         }
-        console.log(nextProps.selected.body)
     }
 
-    handleChanges = (ev) => {
+    changeTitle = (ev) => {
         const note = {...this.props.selected}
         note.title = ev.target.value
         this.props.saveNote(note)
     }
 
-    onChange = (value) => {
+    changeBody = (value) => {
         const note = {...this.props.selected}
         this.setState({ value })
         note.body = value.toString('html');
@@ -41,7 +41,6 @@ class NoteForm extends Component {
     }
 
     handleRemove = (ev) => {
-        console.log(this.props.selected)
         this.props.delete(this.props.selected)
     }
 
@@ -55,7 +54,7 @@ class NoteForm extends Component {
                             className="title"
                             name="title" 
                             placeholder="Title your note" 
-                            onChange={this.handleChanges}
+                            onChange={this.changeTitle}
                             value={this.props.selected.title}
                         />
                     </p>
@@ -64,19 +63,10 @@ class NoteForm extends Component {
                             <RichTextEditor 
                                 className="editor"
                                 value={this.state.value} 
-                                onChange={this.onChange} 
+                                onChange={this.changeBody} 
                                 placeholder="Just start typing..."
                             />
                         </div>
-                        {/*<textarea 
-                            className="body"
-                            name="body" 
-                            cols="30" 
-                            rows="10" 
-                            placeholder="Just start typing..." 
-                            onChange={this.handleChanges}
-                            value={this.props.selected.body}
-                        ></textarea>*/}
                   </div>
                 <div onClick={this.handleRemove} className="delete">
                     <i className="fa fa-trash-o"></i>
