@@ -3,10 +3,10 @@ import RichTextEditor from 'react-rte'
 import './NoteForm.css'
 
 class NoteForm extends Component {
-    
     state = {
         value: RichTextEditor.createEmptyValue()
     }
+
 
     componentWillReceiveProps(nextProps) {
         const newId = nextProps.match.params.id
@@ -16,6 +16,7 @@ class NoteForm extends Component {
                 const note = nextProps.notes[newId]
                 if(note) {  
                     this.props.selectNote(note)
+                    this.setState({ value: RichTextEditor.createValueFromString(nextProps.selected.body, 'html')})
                 } else if(Object.keys(nextProps.notes).length > 0){
                     this.props.history.push('/notes')
                 }
@@ -23,17 +24,20 @@ class NoteForm extends Component {
         } else if(this.props.selected.id) {
             this.props.resetCurrentNote()
         }
+        console.log(nextProps.selected.body)
     }
 
     handleChanges = (ev) => {
         const note = {...this.props.selected}
-        note[ev.target.name] = ev.target.value
+        note.title = ev.target.value
         this.props.saveNote(note)
     }
 
     onChange = (value) => {
+        const note = {...this.props.selected}
         this.setState({ value })
-        console.log(value.toString('markdown'))
+        note.body = value.toString('html');
+        this.props.saveNote(note)
     }
 
     handleRemove = (ev) => {
@@ -62,7 +66,6 @@ class NoteForm extends Component {
                                 value={this.state.value} 
                                 onChange={this.onChange} 
                                 placeholder="Just start typing..."
-                                autoFocus
                             />
                         </div>
                         {/*<textarea 

@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Note = ({ note }) => {
+
     return (
       <NavLink to={`/notes/${note.id}`}>
         <li>
@@ -11,7 +12,8 @@ const Note = ({ note }) => {
               </div>
               <div className="note-body">
                 <p>
-                 {note.body}
+                 {/*Prints body of note and uses a regex that matches all html tags to replace with whitespace */
+                   note.body.toString('html').replace(/(<((\/\w+)|(\w+))>)|(&nbsp;)/g, '')}
                 </p>
               </div>
             </div>
