@@ -1,15 +1,76 @@
 .SignIn {
-  background-color: #008BF8;
-  border: 0;
-  border-radius: 5px;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  padding: 20px;
-  -webkit-transition: background 0.2s;
-  -o-transition: background 0.2s;
-  transition: background 0.2s;
-  font-family: 'helvetica neue', sans-serif;
-  font-size: 20px;
-  font-weight: 200;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignIn .main-content {
+  margin-bottom: 20rem;
+}
+
+.SignIn button {
+    position: relative;
+    padding-left: 44px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    transition: background 0.2s;
+    font-family: 'helvetica neue', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.SignIn button + button {
+  margin-top: 1rem;
+}
+
+.SignIn .github {
+    color: #fff;
+    background-color: #444;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.SignIn .github:hover {
+  background-color: #2b2b2b;
+}
+
+.SignIn .google {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.SignIn .google:hover {
+   background-color: #c23321;
+}
+
+.SignIn .logo {
+  font-family: "Fauna One";
+  color: #666;
+  font-size: 4rem;
+}
+
+.SignIn .logo img {
+  width: 4rem;
+  height: 4rem;
+  padding-left: 4px;
+  padding-right: 4px;
 }

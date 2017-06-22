@@ -1,28 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 import './Main.css'
 
-class Main extends Component {
-   render() {
+const Main = (props) => {
     return (
         <div className="Main">
-            <Sidebar signOut={this.props.signOut}/>
-            <NoteList notes={this.props.notes}/>
+            <Sidebar signOut={props.signOut}/>
+            <NoteList notes={props.notes}/>
 
             <Switch>
                 <Route path="/notes/:id" render={(navProps) => (
-                    <NoteForm {...this.props} {...navProps} />
+                    <NoteForm {...props} {...navProps} />
                 )} />
                 <Route path="/notes" render={(navProps) => (
-                    <NoteForm {...this.props} {...navProps} />
+                    <NoteForm {...props} {...navProps} />
                 )} />
             </Switch>
         </div>
     )
-   } 
 }
 
 export default Main
