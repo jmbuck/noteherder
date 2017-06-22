@@ -1,3 +1,8 @@
+//After filling in the pertinent information here,
+//change the file name to base.js to use app
+//You will also have to set up github, google,
+//and facebook authentication from the Firebase console
+
 import Rebase from 're-base'
 import firebase from 'firebase/app'
 import database from 'firebase/database'
@@ -16,5 +21,6 @@ const app = firebase.initializeApp({
 export const auth = app.auth();
 export const githubProvider = new firebase.auth.GithubAuthProvider()
 export const googleProvider = new firebase.auth.GoogleAuthProvider()
+export const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 export default Rebase.createClass(db)
