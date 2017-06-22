@@ -7,7 +7,6 @@ class NoteForm extends Component {
         value: RichTextEditor.createEmptyValue()
     }
 
-
     componentWillReceiveProps(nextProps) {
         const newId = nextProps.match.params.id
         
@@ -18,7 +17,7 @@ class NoteForm extends Component {
                     this.props.selectNote(note)
                     this.setState({ value: RichTextEditor.createValueFromString(nextProps.selected.body, 'html')})
                 } else if(Object.keys(nextProps.notes).length > 0){
-                    this.props.history.push('/notes')
+                    this.props.history.push('/noteherder/notes')
                 }
             }
         } else if(this.props.selected.id) {

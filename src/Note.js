@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const Note = ({ note }) => {
 
     return (
-      <NavLink to={`/notes/${note.id}`}>
+      <NavLink to={`/noteherder/notes/${note.id}`}>
         <li>
             <div className="note">
               <div className="note-title">

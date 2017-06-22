@@ -59,7 +59,7 @@ class App extends Component {
        this.setState({ notes, selected: note})
 
        if(redirect) {
-         this.props.history.push(`/notes/${note.id}`)
+         this.props.history.push(`/noteherder/notes/${note.id}`)
        }
    }
 
@@ -72,7 +72,7 @@ class App extends Component {
         notes[note.id] = null;
         this.resetCurrentNote()
         this.setState({ notes })
-        this.props.history.push('/notes')    
+        this.props.history.push('/noteherder/notes')    
    }
 
   resetCurrentNote = () => {
@@ -129,17 +129,17 @@ class App extends Component {
     return (
       <div className="App">
        <Switch>
-          <Route path="/notes" render={() =>
+          <Route path="/noteherder/notes" render={() =>
             this.signedIn() 
             ? <Main {...noteData} {...actions} />
-            : <Redirect to='/sign-in' />
+            : <Redirect to='/noteherder/sign-in' />
           }/>
-          <Route path="/sign-in" render={() => 
+          <Route path="/noteherder/sign-in" render={() => 
             !this.signedIn() 
             ? <SignIn />
-            : <Redirect to='/notes' />
+            : <Redirect to='/noteherder/notes' />
           }/>
-          <Route  render={() => <Redirect to="/notes" />}/>
+          <Route  render={() => <Redirect to="/noteherder/notes" />}/>
         </Switch>
        {/*{this.signedIn() ? this.renderMain() : <SignIn />}*/}
       </div>
