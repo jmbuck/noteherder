@@ -132,13 +132,14 @@ class App extends Component {
           <Route path="/noteherder/notes" render={() =>
             this.signedIn() 
             ? <Main {...noteData} {...actions} />
-            : <Redirect to='/noteherder/sign-in' />
+            : <Redirect to="/noteherder/sign-in" />
           }/>
           <Route path="/noteherder/sign-in" render={() => 
             !this.signedIn() 
             ? <SignIn />
-            : <Redirect to='/noteherder/notes' />
+            : <Redirect to="/noteherder/notes"/>
           }/>
+          <Route path="/noteherder" render={() => <Redirect to="/noteherder/notes"/>}/>
           <Route  render={() => <Redirect to="/noteherder/notes" />}/>
         </Switch>
        {/*{this.signedIn() ? this.renderMain() : <SignIn />}*/}
