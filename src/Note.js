@@ -13,7 +13,7 @@ const Note = ({ note }) => {
               <div className="note-body">
                 <p>
                  {/*Prints body of note and uses a regex that matches all html tags to replace with whitespace */
-                   note.body.toString('html').replace(/(<((\/\w+)|(\w+( \w+=".+")*))>)|(&nbsp;)/g, '')}
+                   note.body.toString('html').replace(/(<(\/*\w+( \w+=".+")*)>)|(&nbsp;)/g, '')}
                 </p>
               </div>
             </div>
