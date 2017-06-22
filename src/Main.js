@@ -12,10 +12,10 @@ const Main = (props) => {
             <NoteList notes={props.notes}/>
 
             <Switch>
-                <Route path="/noteherder/notes/:id" render={(navProps) => (
+                <Route path="/notes/:id" render={(navProps) => (
                     <NoteForm {...props} {...navProps} />
                 )} />
-                <Route path="/noteherder/notes" render={(navProps) => (
+                <Route path="/notes" render={(navProps) => (
                     <NoteForm {...props} {...navProps} />
                 )} />
             </Switch>
